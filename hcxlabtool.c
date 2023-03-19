@@ -2506,7 +2506,7 @@ static const char *protocol80211 = "IEEE 802.11";
 memset(&pwrq, 0, sizeof(pwrq));
 memcpy(pwrq.ifr_name, (ifpresentlist + i)->name, IF_NAMESIZE);
 if(ioctl(fd_socket_unix, SIOCGIWNAME, &pwrq) < 0) return;
-if(strncmp(protocol80211, pwrq.u.name, IF_NAMESIZE) == 0) (ifpresentlist + i)->type |= IF_HAS_WEXT;
+if(memcmp(protocol80211, pwrq.u.name, strlen(protocol80211)) == 0) (ifpresentlist + i)->type |= IF_HAS_WEXT;
 return;
 }
 /*===========================================================================*/
